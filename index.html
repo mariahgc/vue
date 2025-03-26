@@ -7,25 +7,42 @@
     <title>Curso Vue3</title>
     <!--VUE CDM-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
     <div id="app">
-        <h1>{{ message }}</h1>
-
-        <input type="text" v-model="message">
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <!--IMAGEM DO PRODUTO-->
+                    <img :src="image" alt="img-product">
+                </div>
+                <div class="product-info">
+                    <!--INFO DO PRODUTO-->
+                    <h1>T-Shirt</h1>
+                    <p>In Stock</p>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         const { createApp, ref } = Vue
+
+
 
         createApp({
             setup() {
                 const message = ref('Hello vue!')
                 return {
-                    message
+                    message,
+                    image: ref("assets/images/t-shirt-blue.png")
                 }
             }
         }).mount('#app')
+
+
+
     </script>
 </body>
 
