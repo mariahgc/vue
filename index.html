@@ -20,9 +20,20 @@
                 </div>
                 <div class="product-info">
                     <!--INFO DO PRODUTO-->
-                    <h1>T-Shirt</h1>
-                    <p>In Stock</p>
+                    <h1>{{ product_title }}</h1>
+                    <p v-if="inStock > 10"> In Stock</p>
+                    <p v-else-if="inStock <10 && inStock >1"> Almost of out</p>
+                    <p v-else>Out of Stock </p>
+                    <ul>
+                        <li v-for="detail in details">
+                            {{ detail }}
+                        </li>
+                    </ul>
+                    <div v-for="variant in variants">
+                        {{ variant.color }}
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -33,10 +44,13 @@
 
         createApp({
             setup() {
-                const message = ref('Hello vue!')
+
                 return {
-                    message,
-                    image: ref("assets/images/t-shirt-blue.png")
+                    product_title: ref('T-Shirt'),
+                    image: ref("assets/images/t-shirt-blue.png"),
+                    inStock: ref(0),
+                    details: ['50% Cotton', '30% Polyester', '20% Woll'],
+                    variants: [{ id: 1, color: 'blue' }, { id: 2, color: 'green' }]
                 }
             }
         }).mount('#app')
